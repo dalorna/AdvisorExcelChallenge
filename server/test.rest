@@ -1,0 +1,26 @@
+###
+GET http://localhost:1337
+###
+POST http://localhost:1337
+Content-Type: application/json
+
+{
+  "name": "James",
+  "location": "101 Lane Street"
+}
+###
+GET http://localhost:3001/setup
+###
+GET http://localhost:3001/hello
+###
+GET http://localhost:3001/Account/John Checking
+###
+POST http://localhost:3001/account/deposit
+Content-Type: application/json
+
+{
+  "amount": 45,
+  "account_number": 1
+}
+###
+GET http://localhost:3001/Accounts
