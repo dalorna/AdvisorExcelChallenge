@@ -1,4 +1,4 @@
-import {useRecoilState} from 'recoil';
+ import {useRecoilState} from 'recoil';
 import {userAtom} from '../../utils/state';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
         {
             !currentUser &&
             <div className="row p-3 shadow-sm rounded bg-white mx-3 mt-5">
-                <ul>
+                <ul className="text-start">
                     <li>
                         In order to use this application, you will need to navigate to the user page.
                     </li>

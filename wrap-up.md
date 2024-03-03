@@ -3,8 +3,8 @@
 ### Please provide instructions on how to run your project in a bulleted list below.
 vscode should work in getting the project up and running.
 
-1. Open a terminal to the client folder and do a npm install
-2. Open a terminal to the server folder and do a npm install
+1. Open a terminal to the client folder and do a npm install (keep terminal open)
+2. Open a terminal to the server folder and do a npm install (keep terminal open)
 3. after both npm installs are done we can start the server (in terminal for the server) by npm start
     1. make sure you see the server has started on port: 3001
 4. once the server is started we can run the client (in the terminal for the client) by npm start you should see something like below
@@ -13,7 +13,10 @@ vscode should work in getting the project up and running.
     3. On Your Network:  http://192.168.12.106:3000
 5. The home page will pop up with some instructions on how to use the app
 6. If you cannot connect to the database check db.js in the server folder, the host might need to be changed
+   1. I'm making the assumption that you can connect to the image you sent
 7. Refreshing the app will cause the setup.js in the src/api folder to run again which will cause all your withdrawals and deposits to be lost
+8. if you don't have vscode, you can open Windows PowerShell to the client folder and another one to the server folder
+   1. follow instructions 1 - 4 again the PowerShell windows
 
 ### Were there any pieces of this project that you were not able to complete that you'd like to mention?
 No, I believe all parts are completed
