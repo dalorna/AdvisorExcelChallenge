@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import {toast} from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {balanceAdjust, getUserByName} from '../../api/account';
-import {ErrorFeedback} from '../../utils/shared';
+import {ErrorFeedback, WITHDRAWAL} from '../../utils/shared';
 
 const schema = Yup.object().shape({
     withdrawal: Yup.number().required(),
@@ -23,12 +23,12 @@ const Withdrawal = () => {
         resolver: yupResolver(schema),
         defaultValues: {withdrawal: null}
     });
-    const draw = watch('withdrawal');
+    const draw = watch(WITHDRAWAL);
 
     const isWithdrawalAllowed = (withdrawalAmount) => {
         if (withdrawalAmount % 5 === 0) {
             const date = new Date();
-            const currentUserTransactions = transactions.filter(f => f.action === 'Withdrawal' && f.account_number === currentUser.account_number && f.day === date.getDay());
+            const currentUserTransactions = transactions.filter(f => f.action === WITHDRAWAL && f.account_number === currentUser.account_number && f.day === date.getDay());
             const withdrawalSum = currentUserTransactions.length > 0 ?
                 currentUserTransactions.map(m => m.amount).reduce((sum, val) => sum + val)
                 : 0;
@@ -51,7 +51,7 @@ const Withdrawal = () => {
                     setTransactions((currenList) => [...currenList, {
                         amount: data.withdrawal,
                         account_number: currentUser.account_number,
-                        action: 'Withdrawal',
+                        action: WITHDRAWAL,
                         date: date.toLocaleDateString(),
                         day: date.getDay()
                     }])
@@ -60,7 +60,7 @@ const Withdrawal = () => {
             } catch (e) {
                 toast.error(`Failed make the withdrawal\r ${e.message}`);
             } finally {
-                setValue('withdrawal', null);
+                setValue(WITHDRAWAL, null);
             }
         } else {
 
@@ -87,7 +87,7 @@ const Withdrawal = () => {
                                 <label htmlFor="user" className="form-label">Enter the amount you would like to withdraw</label>
                             </div>
                             <div className="col-3">
-                                <input type="text" id="withdrawal" {...register('withdrawal')} placeholder="Amount in dollars only"  />
+                                <input type="text" id="withdrawal" {...register(WITHDRAWAL)} placeholder="Amount in dollars only"  />
                                 <ErrorFeedback isValid={isValid} value={draw} />
                             </div>
                             <div className="col-3">

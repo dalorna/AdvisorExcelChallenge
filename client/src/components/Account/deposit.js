@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import {toast} from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {balanceAdjust, getUserByName} from '../../api/account';
-import {ErrorFeedback} from '../../utils/shared';
+import {DEPOSIT, ErrorFeedback} from '../../utils/shared';
 
 const schema = Yup.object().shape({
     deposit: Yup.number().required(),
@@ -24,7 +24,7 @@ const Deposit = () => {
         resolver: yupResolver(schema),
         defaultValues: {deposit: null}
     });
-    const dep = watch('deposit');
+    const dep = watch(DEPOSIT);
 
     const isDepositAllowed = (depositAmount) => {
         if (depositAmount > 1000) {
@@ -53,7 +53,7 @@ const Deposit = () => {
                     setTransactions((currenList) => [...currenList, {
                         amount: data.deposit,
                         account_number: currentUser.account_number,
-                        action: 'Deposit',
+                        action: DEPOSIT,
                         date: date.toLocaleDateString(),
                         day: date.getDay()
                     }])
@@ -62,7 +62,7 @@ const Deposit = () => {
             } catch (e) {
                 toast.error(`Failed make the deposit\r ${e.message}`);
             } finally {
-                setValue('deposit', null);
+                setValue(DEPOSIT, null);
             }
         }
     }
@@ -86,7 +86,7 @@ const Deposit = () => {
                                     <label htmlFor="user" className="form-label">Enter the amount you would like to deposit</label>
                                 </div>
                                 <div className="col-3">
-                                    <input type="text" id="deposit" {...register('deposit')} placeholder="Amount in dollars only"  />
+                                    <input type="text" id="deposit" {...register(DEPOSIT)} placeholder="Amount in dollars only"  />
                                     <ErrorFeedback isValid={isValid} value={dep} />
                                 </div>
                                 <div className="col-3">

@@ -8,3 +8,6 @@ export const ErrorFeedback = ({ isValid, value }) => {
         >Amount is Required, and must be a number</div>
     ) : null;
 }
+
+export const DEPOSIT = 'deposit';
+export const WITHDRAWAL = 'withdrawal'
