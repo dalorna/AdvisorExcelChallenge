@@ -34,7 +34,7 @@ const Balance = () => {
                                 transactions.filter(f => f.account_number === currentUser.account_number).map((m, i) =>
                                     <li key={i}>
                                         {
-                                            `Transaction: ${m.action}, Amount: ${m.amount}`
+                                            `Transaction: ${m.action}, Amount: ${m.amount}, Date: ${m.date}`
                                         }
                                     </li>
                                 )

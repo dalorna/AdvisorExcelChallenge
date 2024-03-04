@@ -27,7 +27,8 @@ const Withdrawal = () => {
 
     const isWithdrawalAllowed = (withdrawalAmount) => {
         if (withdrawalAmount % 5 === 0) {
-            const currentUserTransactions = transactions.filter(f => f.account_number === currentUser.account_number);
+            const date = new Date();
+            const currentUserTransactions = transactions.filter(f => f.action === 'Withdrawal' && f.account_number === currentUser.account_number && f.day === date.getDay());
             const withdrawalSum = currentUserTransactions.length > 0 ?
                 currentUserTransactions.map(m => m.amount).reduce((sum, val) => sum + val)
                 : 0;
@@ -41,6 +42,7 @@ const Withdrawal = () => {
     const onSubmit = async (data) => {
         if (isWithdrawalAllowed(data.withdrawal)) {
             try {
+                const date = new Date();
                 const balance = currentUser.amount - data.withdrawal;
                 await balanceAdjust({amount: balance, account_number: currentUser.account_number});
                 const response = await getUserByName(currentUser.name);
@@ -49,7 +51,9 @@ const Withdrawal = () => {
                     setTransactions((currenList) => [...currenList, {
                         amount: data.withdrawal,
                         account_number: currentUser.account_number,
-                        action: 'Withdrawal'
+                        action: 'Withdrawal',
+                        date: date.toLocaleDateString(),
+                        day: date.getDay()
                     }])
                     toast.success('Withdrawal was successful');
                 }

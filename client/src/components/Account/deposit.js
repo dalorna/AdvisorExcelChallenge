@@ -44,6 +44,7 @@ const Deposit = () => {
         if (isDepositAllowed(data.deposit)) {
             try {
 
+                const date = new Date();
                 const balance = currentUser.amount + data.deposit;
                 await balanceAdjust({amount: balance, account_number: currentUser.account_number});
                 const response = await getUserByName(currentUser.name);
@@ -52,7 +53,9 @@ const Deposit = () => {
                     setTransactions((currenList) => [...currenList, {
                         amount: data.deposit,
                         account_number: currentUser.account_number,
-                        action: 'Deposit'
+                        action: 'Deposit',
+                        date: date.toLocaleDateString(),
+                        day: date.getDay()
                     }])
                     toast.success('Deposit was successful');
                 }
