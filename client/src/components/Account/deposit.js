@@ -54,8 +54,7 @@ const Deposit = () => {
                         amount: data.deposit,
                         account_number: currentUser.account_number,
                         action: DEPOSIT,
-                        date: date.toLocaleDateString(),
-                        day: date.getDay()
+                        date: date.toLocaleDateString()
                     }])
                     toast.success('Deposit was successful');
                 }

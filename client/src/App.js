@@ -1,7 +1,6 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import {initializeSetup} from './utils/setup';
 import SideMenu from './components/layout/sideNav';
 import Home from "./components/Home/home";
 import Report from "./components/Reports/report";
@@ -12,13 +11,6 @@ import { Toaster } from 'react-hot-toast';
 import Balance from "./components/Account/balance";
 
 const App = () => {
-  useEffect(() => {
-      const setup = async () => {
-          await initializeSetup();
-      }
-      setup().then(() => {});
-  }, []);
-
 
   return (
       <>

@@ -14,7 +14,7 @@ vscode should work in getting the project up and running.
 5. The home page will pop up with some instructions on how to use the app
 6. If you cannot connect to the database check db.js in the server folder, the host might need to be changed
    1. I'm making the assumption that you can connect to the image you sent
-7. Refreshing the app will cause the setup.js in the src/api folder to run again which will cause all your withdrawals and deposits to be lost
+7. You can refresh from the home page if you would like to start over
 8. if you don't have vscode, you can open Windows PowerShell to the client folder and another one to the server folder
    1. follow instructions 1 - 4 again the PowerShell windows
 

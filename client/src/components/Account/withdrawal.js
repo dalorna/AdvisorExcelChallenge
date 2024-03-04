@@ -28,7 +28,7 @@ const Withdrawal = () => {
     const isWithdrawalAllowed = (withdrawalAmount) => {
         if (withdrawalAmount % 5 === 0) {
             const date = new Date();
-            const currentUserTransactions = transactions.filter(f => f.action === WITHDRAWAL && f.account_number === currentUser.account_number && f.day === date.getDay());
+            const currentUserTransactions = transactions.filter(f => f.action === WITHDRAWAL && f.account_number === currentUser.account_number && f.date === date.toLocaleDateString());
             const withdrawalSum = currentUserTransactions.length > 0 ?
                 currentUserTransactions.map(m => m.amount).reduce((sum, val) => sum + val)
                 : 0;
@@ -52,8 +52,7 @@ const Withdrawal = () => {
                         amount: data.withdrawal,
                         account_number: currentUser.account_number,
                         action: WITHDRAWAL,
-                        date: date.toLocaleDateString(),
-                        day: date.getDay()
+                        date: date.toLocaleDateString()
                     }])
                     toast.success('Withdrawal was successful');
                 }
